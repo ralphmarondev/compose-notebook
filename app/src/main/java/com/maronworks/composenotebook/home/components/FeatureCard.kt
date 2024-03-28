@@ -33,10 +33,11 @@ fun FeatureCard(
     modifier: Modifier = Modifier,
     @DrawableRes image: Int,
     title: String,
-    subTitle: String
+    subTitle: String,
+    onClick: () -> Unit
 ) {
     ElevatedCard(
-        onClick = { /*TODO*/ },
+        onClick = onClick,
         modifier = modifier
     ) {
         Column(
@@ -74,15 +75,15 @@ fun FeatureCard(
 @Composable
 private fun Default() {
     ComposeNotebookTheme {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            FeatureCard(
-                image = R.drawable.sample_image,
-                title = "Engineering",
-                subTitle = "is fun"
-            )
-        }
+//        Box(
+//            modifier = Modifier.fillMaxSize(),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            FeatureCard(
+//                image = R.drawable.sample_image,
+//                title = "Engineering",
+//                subTitle = "is fun"
+//            )
+//        }
     }
 }

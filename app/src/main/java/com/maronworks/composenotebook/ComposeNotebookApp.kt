@@ -18,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.maronworks.composenotebook.home.HomeNavigation
 import com.maronworks.composenotebook.home.HomeScreen
 import com.maronworks.composenotebook.profile.ProfileScreen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
@@ -55,7 +56,7 @@ fun ComposeNoteBookApp() {
         }
     ) {
         when (selectedIndex) {
-            0 -> HomeScreen()
+            0 -> HomeNavigation()
             1 -> ProfileScreen()
         }
     }

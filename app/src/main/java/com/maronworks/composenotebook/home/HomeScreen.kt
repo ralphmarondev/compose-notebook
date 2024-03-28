@@ -14,13 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.components.FeatureCard
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -47,7 +50,8 @@ fun HomeScreen() {
                         .padding(10.dp),
                     image = R.drawable.sample_image,
                     title = "Programming",
-                    subTitle = "is fun"
+                    subTitle = "is fun",
+                    onClick = { navController.navigate(Screen.CardScreen.route) }
                 )
             }
         }
@@ -58,6 +62,6 @@ fun HomeScreen() {
 @Composable
 private fun Default() {
     ComposeNotebookTheme {
-        HomeScreen()
+//        HomeScreen()
     }
 }
