@@ -19,9 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.maronworks.composenotebook.home.HomeNavigation
-import com.maronworks.composenotebook.home.HomeScreen
 import com.maronworks.composenotebook.profile.ProfileScreen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+
+val mainViewModel = MainViewModel()
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -37,20 +38,22 @@ fun ComposeNoteBookApp() {
                 Icons.Outlined.AccountCircle
             )
 
-            NavigationBar {
-                bottomBarItems.forEachIndexed { index, imageVector ->
-                    NavigationBarItem(
-                        selected = selectedIndex == index,
-                        onClick = {
-                            selectedIndex = index
-                        },
-                        icon = {
-                            Icon(
-                                imageVector = imageVector,
-                                contentDescription = ""
-                            )
-                        }
-                    )
+            if (mainViewModel.showBottomBar.value) {
+                NavigationBar {
+                    bottomBarItems.forEachIndexed { index, imageVector ->
+                        NavigationBarItem(
+                            selected = selectedIndex == index,
+                            onClick = {
+                                selectedIndex = index
+                            },
+                            icon = {
+                                Icon(
+                                    imageVector = imageVector,
+                                    contentDescription = ""
+                                )
+                            }
+                        )
+                    }
                 }
             }
         }

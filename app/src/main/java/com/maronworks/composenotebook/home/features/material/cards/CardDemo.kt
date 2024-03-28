@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.maronworks.composenotebook.mainViewModel
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +40,12 @@ fun CardDemo(
                     Text(text = "Cards")
                 },
                 navigationIcon = {
-                    IconButton(onClick = onExit) {
+                    IconButton(
+                        onClick = {
+                            mainViewModel.toggleShowBottomBar()
+                            onExit()
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.Outlined.ArrowBackIosNew,
                             contentDescription = ""
@@ -53,13 +59,13 @@ fun CardDemo(
                 )
             )
         }
-    ) {innerPadding->
+    ) { innerPadding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            item{
+            item {
 
                 Text(text = "Sample Card")
                 Card(

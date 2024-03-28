@@ -2,10 +2,8 @@ package com.maronworks.composenotebook.home.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -24,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maronworks.composenotebook.R
+import com.maronworks.composenotebook.mainViewModel
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -37,7 +35,10 @@ fun FeatureCard(
     onClick: () -> Unit
 ) {
     ElevatedCard(
-        onClick = onClick,
+        onClick = {
+            mainViewModel.toggleShowBottomBar()
+            onClick()
+        },
         modifier = modifier
     ) {
         Column(
