@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.components.FeatureCard
+import com.maronworks.composenotebook.home.model.FeatureCardModel
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -24,6 +25,41 @@ import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 fun HomeScreen(
     navController: NavHostController
 ) {
+    val featureItems = listOf(
+        FeatureCardModel(
+            image = R.drawable.sample_image,
+            title = "Sample Login",
+            subTitle = "Check it out!",
+            onClick = {
+                navController.navigate(Screen.SampleLogin.route)
+            }
+        ),
+        FeatureCardModel(
+            image = R.drawable.sample_image,
+            title = "Cards",
+            subTitle = "3 Cards",
+            onClick = { navController.navigate(Screen.CardScreen.route) }
+        ),
+        FeatureCardModel(
+            image = R.drawable.sample_image,
+            title = "Programming",
+            subTitle = "Is fun",
+            onClick = {}
+        ),
+        FeatureCardModel(
+            image = R.drawable.sample_image,
+            title = "Programming",
+            subTitle = "Is fun",
+            onClick = {}
+        ),
+        FeatureCardModel(
+            image = R.drawable.sample_image,
+            title = "Programming",
+            subTitle = "Is fun",
+            onClick = {}
+        ),
+    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -44,14 +80,14 @@ fun HomeScreen(
                 .padding(innerPadding),
             columns = GridCells.Fixed(2)
         ) {
-            items(5) {
+            items(featureItems.size) {
                 FeatureCard(
                     modifier = Modifier
                         .padding(10.dp),
-                    image = R.drawable.sample_image,
-                    title = "Programming",
-                    subTitle = "is fun",
-                    onClick = { navController.navigate(Screen.CardScreen.route) }
+                    image = featureItems[it].image,
+                    title = featureItems[it].title,
+                    subTitle = featureItems[it].subTitle,
+                    onClick = featureItems[it].onClick
                 )
             }
         }
