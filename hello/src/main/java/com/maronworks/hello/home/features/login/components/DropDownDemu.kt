@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home.features.login.components
+package com.maronworks.hello.home.features.login.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

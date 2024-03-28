@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home.model
+package com.maronworks.hello.home.model
 
 import androidx.annotation.DrawableRes
 import androidx.compose.ui.Modifier

@@ -1,11 +1,11 @@
-package com.maronworks.composenotebook.home
+package com.maronworks.hello.home
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.maronworks.composenotebook.home.features.login.SampleLoginScreen
-import com.maronworks.composenotebook.home.features.material.cards.CardDemo
+import com.maronworks.hello.home.features.login.SampleLoginScreen
+import com.maronworks.hello.home.features.material.cards.CardDemo
 
 sealed class Screen(val route: String) {
     data object Home : Screen("home")

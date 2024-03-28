@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home.components
+package com.maronworks.hello.home.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -22,8 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maronworks.composenotebook.mainViewModel
-import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import com.maronworks.hello.mainViewModel
+import com.maronworks.hello.ui.theme.HelloTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +75,7 @@ fun FeatureCard(
 @Preview
 @Composable
 private fun Default() {
-    ComposeNotebookTheme {
+    HelloTheme {
 //        Box(
 //            modifier = Modifier.fillMaxSize(),
 //            contentAlignment = Alignment.Center

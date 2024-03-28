@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook
+package com.maronworks.hello
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

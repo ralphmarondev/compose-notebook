@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home.features.login
+package com.maronworks.hello.home.features.login
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -23,8 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.maronworks.composenotebook.home.features.login.components.DropDownDemo
-import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import com.maronworks.hello.home.features.login.components.DropDownDemo
+import com.maronworks.hello.ui.theme.HelloTheme
 
 
 /*
@@ -95,7 +95,7 @@ fun SampleLoginScreen(
 @Preview
 @Composable
 private fun Default() {
-    ComposeNotebookTheme {
+    HelloTheme {
         SampleLoginScreen(rememberNavController())
     }
 }

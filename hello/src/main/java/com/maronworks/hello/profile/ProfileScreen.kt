@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.profile
+package com.maronworks.hello.profile
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box

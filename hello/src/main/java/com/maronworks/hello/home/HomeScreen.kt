@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home
+package com.maronworks.hello.home
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -16,9 +16,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.maronworks.composenotebook.R
-import com.maronworks.composenotebook.home.components.FeatureCard
-import com.maronworks.composenotebook.home.model.FeatureCardModel
-import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import com.maronworks.hello.home.components.FeatureCard
+import com.maronworks.hello.home.model.FeatureCardModel
+import com.maronworks.hello.ui.theme.HelloTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -97,7 +97,7 @@ fun HomeScreen(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun Default() {
-    ComposeNotebookTheme {
+    HelloTheme {
 //        HomeScreen()
     }
 }

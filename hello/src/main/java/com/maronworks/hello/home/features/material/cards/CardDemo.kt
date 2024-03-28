@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.home.features.material.cards
+package com.maronworks.hello.home.features.material.cards
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -24,8 +24,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maronworks.composenotebook.mainViewModel
-import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import com.maronworks.hello.mainViewModel
+import com.maronworks.hello.ui.theme.HelloTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -91,7 +91,7 @@ fun CardDemo(
 @Preview
 @Composable
 private fun Default() {
-    ComposeNotebookTheme {
+    HelloTheme {
         CardDemo {
 
         }

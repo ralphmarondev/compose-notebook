@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook
+package com.maronworks.hello
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,9 +18,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.maronworks.composenotebook.home.HomeNavigation
-import com.maronworks.composenotebook.profile.ProfileScreen
-import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import com.maronworks.hello.ui.theme.HelloTheme
+import com.maronworks.hello.home.HomeNavigation
+import com.maronworks.hello.profile.ProfileScreen
 
 val mainViewModel = MainViewModel()
 
@@ -68,7 +68,7 @@ fun ComposeNoteBookApp() {
 @Preview
 @Composable
 private fun DefaultPreview() {
-    ComposeNotebookTheme {
+    HelloTheme {
         Surface(
             modifier = Modifier
                 .fillMaxSize(),
