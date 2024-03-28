@@ -41,7 +41,7 @@ fun HomeScreen() {
                 .padding(innerPadding),
             columns = GridCells.Fixed(2)
         ) {
-            items(2) {
+            items(5) {
                 FeatureCard(
                     modifier = Modifier
                         .padding(10.dp),
