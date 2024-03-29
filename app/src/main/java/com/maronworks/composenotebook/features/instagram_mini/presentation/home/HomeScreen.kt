@@ -21,7 +21,9 @@ import com.maronworks.composenotebook.features.instagram_mini.presentation.home.
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onExit: () -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -29,7 +31,7 @@ fun HomeScreen() {
                     Text(text = "Instagram Mini")
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = onExit) {
                         Icon(
                             imageVector = Icons.Outlined.ArrowBackIosNew,
                             contentDescription = ""
@@ -52,13 +54,13 @@ fun HomeScreen() {
                 }
             )
         }
-    ) {innerPadding->
-        LazyColumn (
+    ) { innerPadding ->
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-        ){
-            item{
+        ) {
+            item {
                 HorizontalRowStories()
             }
         }

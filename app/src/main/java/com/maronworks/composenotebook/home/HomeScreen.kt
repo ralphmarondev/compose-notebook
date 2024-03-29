@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.components.FeatureCard2
 import com.maronworks.composenotebook.home.components.TopAboutCard
@@ -38,18 +40,22 @@ val homeViewModel = HomeViewModel()
 @Composable
 private fun Default() {
     ComposeNotebookTheme {
-        HomeScreen()
+        HomeScreen(rememberNavController())
     }
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController
+) {
     val features = listOf(
         FeatureCardModel(
-            onClick = {},
+            onClick = {
+                homeViewModel.navigateToInstagramMini(navController)
+            },
             image = R.drawable.sample_image,
-            title = "Title 1",
-            subTitle = "Sub title 1"
+            title = "Instagram Mini",
+            subTitle = "Version 1.0"
         ),
         FeatureCardModel(
             onClick = {},

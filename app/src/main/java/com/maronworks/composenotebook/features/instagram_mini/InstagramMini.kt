@@ -21,6 +21,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.features.instagram_mini.presentation.home.HomeScreen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
@@ -35,20 +37,26 @@ private fun Default() {
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            InstagramMini()
+            InstagramMini(rememberNavController())
         }
     }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun InstagramMini() {
+fun InstagramMini(
+    navController: NavHostController
+) {
     Scaffold(
         bottomBar = {
             InstagramMiniBottomBar()
         }
     ) {
-        HomeScreen()
+        HomeScreen(
+            onExit = {
+                instagramMiniVM.exitInstagramMini(navController)
+            }
+        )
     }
 }
 
