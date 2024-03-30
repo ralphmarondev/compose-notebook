@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
+import com.maronworks.guessing_game.data.datastore.SharedPreferencesManager
 import com.maronworks.guessing_game.ui.theme.GuessingGameTheme
 
 class GuessingGameActivity : ComponentActivity() {
@@ -18,7 +20,13 @@ class GuessingGameActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    val navController = rememberNavController()
+                    val sharedPref = SharedPreferencesManager(this)
 
+                    AppNavigation(
+                        navController = navController,
+                        sharedPref = sharedPref
+                    )
                 }
             }
         }
