@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
 import com.maronworks.composenotebook.features.instagram_mini.presentation.home.components.HorizontalRowStories
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +29,10 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = "Instagram Mini")
+                    Text(
+                        text = "Instagram Mini",
+                        fontFamily = FontFamily.Monospace
+                    )
                 },
                 navigationIcon = {
                     IconButton(onClick = onExit) {
