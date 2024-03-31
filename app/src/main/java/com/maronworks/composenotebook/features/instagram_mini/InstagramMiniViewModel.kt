@@ -15,6 +15,10 @@ class InstagramMiniViewModel: ViewModel() {
         selectedIndex.intValue = value
     }
 
+    fun getSelectedIndex(): Int{
+        return selectedIndex.intValue
+    }
+
     fun exitInstagramMini(navController: NavHostController) {
         navController.popBackStack()
     }

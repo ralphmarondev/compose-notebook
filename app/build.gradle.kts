@@ -51,7 +51,7 @@ android {
 
 dependencies {
     // including the other modules
-    implementation(project(":guessing_game"))
+//    implementation(project(":guessing_game"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

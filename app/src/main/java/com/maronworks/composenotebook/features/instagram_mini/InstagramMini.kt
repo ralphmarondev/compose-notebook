@@ -6,6 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.AddBox
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.AddBox
 import androidx.compose.material.icons.outlined.Home
@@ -23,6 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.maronworks.composenotebook.core.presentation.ComingSoon
+import com.maronworks.composenotebook.features.instagram_mini.model.IconModel
 import com.maronworks.composenotebook.features.instagram_mini.presentation.home.HomeScreen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
@@ -52,22 +59,46 @@ fun InstagramMini(
             InstagramMiniBottomBar()
         }
     ) {
-        HomeScreen(
-            onExit = {
-                instagramMiniVM.exitInstagramMini(navController)
+        when (instagramMiniVM.getSelectedIndex()) {
+            0 -> {
+                HomeScreen(
+                    onExit = {
+                        instagramMiniVM.exitInstagramMini(navController)
+                    }
+                )
             }
-        )
+
+            else -> {
+                ComingSoon()
+            }
+        }
+
     }
 }
 
 @Composable
 private fun InstagramMiniBottomBar() {
     val bottomItems = listOf(
-        Icons.Outlined.Home,
-        Icons.Outlined.Search,
-        Icons.Outlined.AddBox,
-        Icons.Outlined.VideoLibrary,
-        Icons.Outlined.AccountCircle
+        IconModel(
+            defaultIcon = Icons.Outlined.Home,
+            selectedIcon = Icons.Filled.Home
+        ),
+        IconModel(
+            defaultIcon = Icons.Outlined.Search,
+            selectedIcon = Icons.Filled.Search
+        ),
+        IconModel(
+            defaultIcon = Icons.Outlined.AddBox,
+            selectedIcon = Icons.Filled.AddBox
+        ),
+        IconModel(
+            defaultIcon = Icons.Outlined.VideoLibrary,
+            selectedIcon = Icons.Filled.VideoLibrary
+        ),
+        IconModel(
+            defaultIcon = Icons.Outlined.AccountCircle,
+            selectedIcon = Icons.Filled.AccountCircle
+        )
     )
 
     NavigationBar {
@@ -76,13 +107,15 @@ private fun InstagramMiniBottomBar() {
                 .fillMaxWidth()
                 .padding(horizontal = 10.dp)
         ) {
-            bottomItems.forEachIndexed { index, imageVector ->
+            bottomItems.forEachIndexed { index, item ->
                 NavigationBarItem(
                     selected = instagramMiniVM.isSelected(index),
                     onClick = { instagramMiniVM.setSelectedIndex(index) },
                     icon = {
                         Icon(
-                            imageVector = imageVector,
+                            imageVector =
+                            if (instagramMiniVM.isSelected(index)) item.selectedIcon
+                            else item.defaultIcon,
                             contentDescription = ""
                         )
                     }
