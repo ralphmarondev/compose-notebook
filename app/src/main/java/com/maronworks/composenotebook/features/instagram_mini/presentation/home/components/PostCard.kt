@@ -23,6 +23,10 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddComment
+import androidx.compose.material.icons.filled.BookmarkAdd
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.IosShare
 import androidx.compose.material.icons.outlined.AddComment
 import androidx.compose.material.icons.outlined.BookmarkAdd
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -38,11 +42,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -143,11 +149,18 @@ private fun DateTimeAndDescription(
 
 @Composable
 private fun ReactionRow() {
-    val items = listOf(
+    // refactor this later. Convert to data-class
+    val defaultIcons = listOf(
         Icons.Outlined.FavoriteBorder,
         Icons.Outlined.AddComment,
         Icons.Outlined.IosShare,
         Icons.Outlined.BookmarkAdd
+    )
+    val selectedIcons = listOf(
+        Icons.Filled.Favorite,
+        Icons.Filled.AddComment,
+        Icons.Filled.IosShare,
+        Icons.Filled.BookmarkAdd
     )
 
     Row(
@@ -157,16 +170,32 @@ private fun ReactionRow() {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        items.forEachIndexed { _, imageVector ->
-            IconButton(
-                onClick = {}
-            ) {
-                Icon(
-                    imageVector = imageVector,
-                    contentDescription = ""
-                )
-            }
+        defaultIcons.forEachIndexed { index, defaultIcon ->
+            IconButtonComp(
+                defaultIcon = defaultIcon,
+                selectedIcon = selectedIcons[index]
+            )
         }
+    }
+}
+
+@Composable
+private fun IconButtonComp(
+    defaultIcon: ImageVector,
+    selectedIcon: ImageVector
+) {
+    var selected by rememberSaveable {
+        mutableStateOf(false)
+    }
+    IconButton(
+        onClick = {
+            selected = !selected
+        }
+    ) {
+        Icon(
+            imageVector = if (selected) selectedIcon else defaultIcon,
+            contentDescription = ""
+        )
     }
 }
 
