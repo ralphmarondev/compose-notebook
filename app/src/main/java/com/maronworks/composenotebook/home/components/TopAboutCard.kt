@@ -51,7 +51,7 @@ fun TopAboutCard() {
                     text = "Compose NoteBook",
                     fontWeight = FontWeight.W500
                 )
-                Text(text = "Version: 2024.03.28")
+                Text(text = "Version: 2024.04.02")
                 Spacer(
                     modifier = Modifier
                         .padding(bottom = 20.dp)

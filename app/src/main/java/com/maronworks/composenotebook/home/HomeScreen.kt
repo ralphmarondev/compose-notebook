@@ -12,16 +12,20 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.NotificationsNone
 import androidx.compose.material.icons.outlined.Preview
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,10 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.R
+import com.maronworks.composenotebook.home.components.DrawerContent
 import com.maronworks.composenotebook.home.components.FeatureCard2
 import com.maronworks.composenotebook.home.components.TopAboutCard
 import com.maronworks.composenotebook.home.model.FeatureCardModel
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import kotlinx.coroutines.launch
 
 val homeViewModel = HomeViewModel()
 
@@ -77,38 +83,62 @@ fun HomeScreen(
         )
     )
 
-    Scaffold(
-        topBar = {
-            HomeScreenTopBar()
-        },
-        bottomBar = {
-            HomeScreenBottomBar()
-        },
-        containerColor = Color(0xfff0f0f0)
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-        ) {
-            // FIXME: Make the top-about-card scroll up too when we scroll the vertical grid 
-            TopAboutCard()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
+    ModalNavigationDrawer(
+        drawerContent = {
+            DrawerContent(
+                onCloseDrawer = {
+                    scope.launch {
+                        drawerState.apply {
+                            close()
+                        }
+                    }
+                }
+            )
+        },
+        drawerState = drawerState
+    ) {
+        Scaffold(
+            topBar = {
+                HomeScreenTopBar(
+                    onMenuOpen = {
+                        scope.launch {
+                            drawerState.apply { open() }
+                        }
+                    }
+                )
+            },
+            bottomBar = {
+                HomeScreenBottomBar()
+            },
+            containerColor = Color(0xfff0f0f0)
+        ) { innerPadding ->
+            Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .padding(innerPadding)
             ) {
-                items(features.size) {
-                    FeatureCard2(
-                        modifier = Modifier
-                            .weight(1f)
-                            .wrapContentHeight()
-                            .padding(10.dp),
-                        onClick = features[it].onClick,
-                        image = features[it].image,
-                        title = features[it].title,
-                        subTitle = features[it].subTitle
-                    )
+                // FIXME: Make the top-about-card scroll up too when we scroll the vertical grid
+                TopAboutCard()
+
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    items(features.size) {
+                        FeatureCard2(
+                            modifier = Modifier
+                                .weight(1f)
+                                .wrapContentHeight()
+                                .padding(10.dp),
+                            onClick = features[it].onClick,
+                            image = features[it].image,
+                            title = features[it].title,
+                            subTitle = features[it].subTitle
+                        )
+                    }
                 }
             }
         }
@@ -142,11 +172,13 @@ private fun HomeScreenBottomBar() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun HomeScreenTopBar() {
+private fun HomeScreenTopBar(
+    onMenuOpen: () -> Unit
+) {
     TopAppBar(
         title = { },
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = onMenuOpen) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Outlined.MenuOpen,
                     contentDescription = ""
