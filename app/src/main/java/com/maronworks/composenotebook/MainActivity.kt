@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import com.maronworks.composenotebook.core.navigation.AppNavigation
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 class MainActivity : ComponentActivity() {
-//    private val startNewActivity =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,10 +20,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     AppNavigation()
-
-//                    startNewActivity.launch(
-//                        Intent(this, GuessingGameActivity::class.java)
-//                    )
                 }
             }
         }

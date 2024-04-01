@@ -4,7 +4,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
-import com.maronworks.composenotebook.Screen
+import com.maronworks.composenotebook.core.navigation.Screen
 
 class HomeViewModel : ViewModel() {
     private var selectedIndex = mutableIntStateOf(0)
