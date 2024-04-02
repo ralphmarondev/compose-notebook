@@ -20,12 +20,12 @@ fun AboutHer() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { 
+                title = {
                     Text(text = "About Her")
                 }
             )
         }
     ) {
-        
+
     }
 }

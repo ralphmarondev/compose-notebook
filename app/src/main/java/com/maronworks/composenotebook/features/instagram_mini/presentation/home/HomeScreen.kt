@@ -142,7 +142,7 @@ fun HomeScreen(
                     )
                 }
             }
-            item{
+            item {
                 // padding at the bottom
                 Spacer(modifier = Modifier.height(100.dp))
             }

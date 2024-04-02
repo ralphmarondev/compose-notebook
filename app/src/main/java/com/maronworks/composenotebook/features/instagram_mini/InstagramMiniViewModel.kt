@@ -4,10 +4,10 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 
-class InstagramMiniViewModel: ViewModel() {
+class InstagramMiniViewModel : ViewModel() {
     private var selectedIndex = mutableIntStateOf(0)
 
-    fun isSelected(value: Int):Boolean{
+    fun isSelected(value: Int): Boolean {
         return selectedIndex.intValue == value
     }
 
@@ -15,7 +15,7 @@ class InstagramMiniViewModel: ViewModel() {
         selectedIndex.intValue = value
     }
 
-    fun getSelectedIndex(): Int{
+    fun getSelectedIndex(): Int {
         return selectedIndex.intValue
     }
 

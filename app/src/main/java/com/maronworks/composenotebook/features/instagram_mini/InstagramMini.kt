@@ -31,6 +31,7 @@ import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.core.presentation.ComingSoon
 import com.maronworks.composenotebook.features.instagram_mini.model.IconModel
 import com.maronworks.composenotebook.features.instagram_mini.presentation.home.HomeScreen
+import com.maronworks.composenotebook.features.instagram_mini.presentation.profile.ProfileScreen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 val instagramMiniVM = InstagramMiniViewModel()
@@ -66,6 +67,10 @@ fun InstagramMini(
                         instagramMiniVM.exitInstagramMini(navController)
                     }
                 )
+            }
+
+            4 -> {
+                ProfileScreen()
             }
 
             else -> {
