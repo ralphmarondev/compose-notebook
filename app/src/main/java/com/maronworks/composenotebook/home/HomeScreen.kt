@@ -64,10 +64,10 @@ fun HomeScreen(
             subTitle = "Version 1.0"
         ),
         FeatureCardModel(
-            onClick = {},
+            onClick = { homeViewModel.navigateToTodoApp(navController) },
             image = R.drawable.sample_image,
-            title = "Title 2",
-            subTitle = "Sub title 2"
+            title = "Todo App",
+            subTitle = "Version 2024.04"
         ),
         FeatureCardModel(
             onClick = {},

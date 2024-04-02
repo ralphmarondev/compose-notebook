@@ -26,4 +26,8 @@ class HomeViewModel : ViewModel() {
     fun navigateToInstagramMini(navController: NavHostController) {
         navController.navigate(Screen.InstagramMini.route)
     }
+
+    fun navigateToTodoApp(navController: NavHostController){
+        navController.navigate(Screen.TodoApp.route)
+    }
 }
