@@ -1,36 +1,31 @@
-package com.maronworks.composenotebook.features.todo_app
+package com.maronworks.composenotebook.features.todo_app.presentation.new_note
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.NoteAdd
-import androidx.compose.material.icons.outlined.ArrowBackIosNew
-import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.maronworks.composenotebook.features.todo_app.components.NoteCard
+import androidx.compose.ui.unit.sp
+import com.maronworks.composenotebook.features.todo_app.todoAppVM
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
-
-val todoAppVM = TodoAppViewModel()
 
 @Preview
 @Composable
@@ -41,7 +36,7 @@ private fun Default() {
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            TodoApp {
+            NewNoteScreen {
 
             }
         }
@@ -51,37 +46,34 @@ private fun Default() {
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun TodoApp(
-    exitApp: () -> Unit
+fun NewNoteScreen(
+    onBack: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(
-                        text = "Todo App",
-                        fontFamily = FontFamily.Monospace
-                    )
+                    Text(text = "New Note")
                 },
                 navigationIcon = {
-                    IconButton(onClick = exitApp) {
+                    IconButton(onClick = onBack) {
                         Icon(
-                            imageVector = Icons.Outlined.ArrowBackIosNew,
+                            imageVector = Icons.Outlined.Close,
                             contentDescription = ""
                         )
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Refresh,
-                            contentDescription = ""
-                        )
-                    }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            imageVector = Icons.Outlined.Settings,
-                            contentDescription = ""
+                    TextButton(
+                        onClick = {
+                            todoAppVM.saveNote()
+                            onBack()
+                        }
+                    ) {
+                        Text(
+                            text = "SAVE",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 16.sp
                         )
                     }
                 },
@@ -92,19 +84,6 @@ fun TodoApp(
                     actionIconContentColor = MaterialTheme.colorScheme.primary
                 )
             )
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    imageVector = Icons.AutoMirrored.Outlined.NoteAdd,
-                    contentDescription = ""
-                )
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(
-                    text = "New Note",
-                    fontFamily = FontFamily.Monospace
-                )
-            }
         }
     ) { innerPadding ->
         LazyColumn(
@@ -113,16 +92,19 @@ fun TodoApp(
                 .padding(innerPadding)
         ) {
             item {
-                Spacer(modifier = Modifier.height(10.dp))
-            }
-            items(2) {
-                NoteCard(
+                OutlinedTextField(
+                    value = todoAppVM.newNote.value,
+                    onValueChange = { value ->
+                        todoAppVM.newNote.value = value
+                    },
                     modifier = Modifier
-                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    minLines = 8,
+                    label = {
+                        Text(text = "What's on your mind?")
+                    }
                 )
-            }
-            item {
-                Spacer(modifier = Modifier.height(100.dp))
             }
         }
     }
