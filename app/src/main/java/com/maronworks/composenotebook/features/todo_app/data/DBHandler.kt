@@ -1,8 +1,10 @@
 package com.maronworks.composenotebook.features.todo_app.data
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.maronworks.composenotebook.features.todo_app.model.notes.NoteModel
 
 class DBHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
     companion object {
@@ -30,8 +32,15 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_
         db?.execSQL("DROP TABLE IF EXISTS $NOTES_TABLE")
     }
 
-    fun addNotes() {
-        // TODO: Implement this
+    fun addNotes(note: NoteModel) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+
+        values.put(NOTES_TITLE, note.title)
+        values.put(NOTES_CONTENT, note.content)
+        values.put(DATE_ADDED, note.dateAdded)
+
+        db.insert(NOTES_TABLE, null, values)
     }
 
     fun readNotes() {

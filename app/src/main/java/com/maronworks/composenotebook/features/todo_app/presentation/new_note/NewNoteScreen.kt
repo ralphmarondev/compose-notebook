@@ -1,6 +1,7 @@
 package com.maronworks.composenotebook.features.todo_app.presentation.new_note
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,6 +21,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -36,9 +38,7 @@ private fun Default() {
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            NewNoteScreen {
-
-            }
+            NewNoteScreen(onBack = {})
         }
     }
 }
@@ -47,7 +47,8 @@ private fun Default() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun NewNoteScreen(
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    context: Context = LocalContext.current
 ) {
     Scaffold(
         topBar = {
@@ -66,7 +67,7 @@ fun NewNoteScreen(
                 actions = {
                     TextButton(
                         onClick = {
-                            todoAppVM.saveNote()
+                            todoAppVM.saveNote(context)
                             onBack()
                         }
                     ) {
@@ -91,7 +92,7 @@ fun NewNoteScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            item{
+            item {
                 OutlinedTextField(
                     value = todoAppVM.noteTitle.value,
                     onValueChange = { value ->
