@@ -1,4 +1,4 @@
-package com.maronworks.composenotebook.features.todo_app.components
+package com.maronworks.composenotebook.features.todo_app.presentation.home.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

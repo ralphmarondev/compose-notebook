@@ -24,7 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import com.maronworks.composenotebook.features.todo_app.components.NoteCard
+import com.maronworks.composenotebook.features.todo_app.presentation.home.components.NoteCard
 import com.maronworks.composenotebook.features.todo_app.todoAppVM
 
 @OptIn(ExperimentalMaterial3Api::class)
