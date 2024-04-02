@@ -6,11 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
 class TodoAppViewModel : ViewModel() {
+    var noteTitle = mutableStateOf("")
     var newNote = mutableStateOf("")
     private var selectedScreen = mutableIntStateOf(0)
 
     fun saveNote() {
-        Log.d("todo_app", "Saving note...\nContents: ${newNote.value}")
+        Log.d("todo_app", "Saving note...\nTitle: ${noteTitle.value}\nContent: ${newNote.value}")
     }
 
     fun getSelectedScreen(): Int{

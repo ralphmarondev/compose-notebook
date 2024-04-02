@@ -91,6 +91,21 @@ fun NewNoteScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
+            item{
+                OutlinedTextField(
+                    value = todoAppVM.noteTitle.value,
+                    onValueChange = { value ->
+                        todoAppVM.noteTitle.value = value
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp),
+                    minLines = 1,
+                    label = {
+                        Text(text = "Notes Title")
+                    }
+                )
+            }
             item {
                 OutlinedTextField(
                     value = todoAppVM.newNote.value,
@@ -99,7 +114,7 @@ fun NewNoteScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(10.dp),
+                        .padding(horizontal = 10.dp),
                     minLines = 8,
                     label = {
                         Text(text = "What's on your mind?")
