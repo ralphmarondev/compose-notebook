@@ -16,10 +16,15 @@ class TodoAppViewModel : ViewModel() {
     var newNote = mutableStateOf("")
     private var selectedScreen = mutableIntStateOf(0)
 
-    fun saveNote(context: Context) {
+    fun saveNote(context: Context): String {
         Log.d("todo_app", "Saving note...\nTitle: ${noteTitle.value}\nContent: ${newNote.value}")
 
-        saveNotesToDatabase(context)
+        return saveNotesToDatabase(context)
+    }
+
+    fun clearFields() {
+        noteTitle.value = ""
+        newNote.value = ""
     }
 
     fun getSelectedScreen(): Int {
@@ -42,7 +47,7 @@ class TodoAppViewModel : ViewModel() {
         return currentDateTime.format(formatter)
     }
 
-    private fun saveNotesToDatabase(context: Context) {
+    private fun saveNotesToDatabase(context: Context): String {
         try {
             val db = DBHandler(context)
 
@@ -56,8 +61,10 @@ class TodoAppViewModel : ViewModel() {
                 )
             )
             Log.d("todo_app", "Inserted successfully!")
+            return "success"
         } catch (ex: Exception) {
             Log.d("todo_app", "Insertion Error: ${ex.message}")
+            return "Insertion Error: ${ex.message}"
         }
     }
 

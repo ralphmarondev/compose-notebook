@@ -14,12 +14,16 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -28,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.maronworks.composenotebook.features.todo_app.todoAppVM
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
+import kotlinx.coroutines.launch
 
 @Preview
 @Composable
@@ -50,6 +55,9 @@ fun NewNoteScreen(
     onBack: () -> Unit,
     context: Context = LocalContext.current
 ) {
+    val snackBarState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -67,8 +75,16 @@ fun NewNoteScreen(
                 actions = {
                     TextButton(
                         onClick = {
-                            todoAppVM.saveNote(context)
-                            onBack()
+                            if (todoAppVM.saveNote(context) == "success") {
+                                scope.launch {
+                                    snackBarState.showSnackbar("Saved Successfully")
+                                }
+                                todoAppVM.clearFields()
+                            } else {
+                                scope.launch {
+                                    snackBarState.showSnackbar("Invalid input!")
+                                }
+                            }
                         }
                     ) {
                         Text(
@@ -85,6 +101,9 @@ fun NewNoteScreen(
                     actionIconContentColor = MaterialTheme.colorScheme.primary
                 )
             )
+        },
+        snackbarHost = {
+            SnackbarHost(hostState = snackBarState)
         }
     ) { innerPadding ->
         LazyColumn(
