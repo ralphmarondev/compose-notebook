@@ -15,11 +15,16 @@ class TodoAppViewModel : ViewModel() {
     var noteTitle = mutableStateOf("")
     var newNote = mutableStateOf("")
     private var selectedScreen = mutableIntStateOf(0)
+    var notes = mutableListOf<NoteModel>()
 
     fun saveNote(context: Context): String {
         Log.d("todo_app", "Saving note...\nTitle: ${noteTitle.value}\nContent: ${newNote.value}")
 
         return saveNotesToDatabase(context)
+    }
+
+    fun readNotes(context: Context){
+        readNotesFromDatabase(context)
     }
 
     fun clearFields() {
@@ -65,6 +70,18 @@ class TodoAppViewModel : ViewModel() {
         } catch (ex: Exception) {
             Log.d("todo_app", "Insertion Error: ${ex.message}")
             return "Insertion Error: ${ex.message}"
+        }
+    }
+
+    private fun readNotesFromDatabase(context: Context) {
+        try {
+            val db = DBHandler(context)
+
+            notes.clear()
+            notes.addAll(db.readNotes())
+            notes.reverse()
+        } catch (ex: Exception) {
+            Log.d("todo_app", "Reading Error: ${ex.message}")
         }
     }
 

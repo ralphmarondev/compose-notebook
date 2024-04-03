@@ -43,8 +43,27 @@ class DBHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_
         db.insert(NOTES_TABLE, null, values)
     }
 
-    fun readNotes() {
-        // TODO: Implement this
+    fun readNotes():MutableList<NoteModel> {
+        val items = mutableListOf<NoteModel>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $NOTES_TABLE", null)
+
+        cursor?.let{
+            if(cursor.moveToFirst()){
+                do{
+                    items.add(
+                        NoteModel(
+                            id = cursor.getInt(0),
+                            title = cursor.getString(1),
+                            content = cursor.getString(2),
+                            dateAdded = cursor.getString(3)
+                        )
+                    )
+                }while (cursor.moveToNext())
+            }
+            cursor.close()
+        }
+        return items
     }
 
     fun updateNotes() {

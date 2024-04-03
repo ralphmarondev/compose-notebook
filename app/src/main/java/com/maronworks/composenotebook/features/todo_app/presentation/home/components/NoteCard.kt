@@ -12,10 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.maronworks.composenotebook.features.todo_app.model.notes.NoteModel
 
 @Composable
 fun NoteCard(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    note: NoteModel
 ) {
     ElevatedCard(
         modifier = modifier,
@@ -31,7 +33,7 @@ fun NoteCard(
                 .padding(10.dp),
             verticalArrangement = Arrangement.Center
         ) {
-            Text(text = "Some notes lol")
+            Text(text = note.title)
         }
     }
 }

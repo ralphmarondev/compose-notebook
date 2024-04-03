@@ -95,11 +95,14 @@ fun HomeScreen(
             item {
                 Spacer(modifier = Modifier.height(10.dp))
             }
-            items(2) {
-                NoteCard(
+            item {
+                repeat(todoAppVM.notes.size) { index ->
+                    NoteCard(
                     modifier = Modifier
-                        .padding(horizontal = 10.dp, vertical = 5.dp)
-                )
+                        .padding(horizontal = 10.dp, vertical = 5.dp),
+                        note = todoAppVM.notes[index]
+                    )
+                }
             }
             item {
                 Spacer(modifier = Modifier.height(100.dp))
