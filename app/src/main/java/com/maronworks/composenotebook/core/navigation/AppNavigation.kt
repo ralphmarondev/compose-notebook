@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.MainViewModel
 import com.maronworks.composenotebook.features.instagram_mini.InstagramMini
+import com.maronworks.composenotebook.features.message_generator.MessageGenerator
 import com.maronworks.composenotebook.features.todo_app.TodoApp
 import com.maronworks.composenotebook.home.HomeScreen
 import com.maronworks.composenotebook.onboarding.OnBoardingScreen
@@ -43,6 +44,9 @@ fun AppNavigation() {
             }
             composable(Screen.TodoApp.route) {
                 TodoApp(exitApp = { navController.popBackStack() })
+            }
+            composable(Screen.MessageGenerator.route) {
+                MessageGenerator(onExit = { navController.popBackStack() })
             }
         }
     }

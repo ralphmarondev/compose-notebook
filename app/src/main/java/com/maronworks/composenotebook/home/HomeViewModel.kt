@@ -30,4 +30,8 @@ class HomeViewModel : ViewModel() {
     fun navigateToTodoApp(navController: NavHostController){
         navController.navigate(Screen.TodoApp.route)
     }
+
+    fun navigateToMessageGenerator(navController: NavHostController){
+        navController.navigate(Screen.MessageGenerator.route)
+    }
 }

@@ -70,10 +70,10 @@ fun HomeScreen(
             subTitle = "Version 2024.04"
         ),
         FeatureCardModel(
-            onClick = {},
+            onClick = { homeViewModel.navigateToMessageGenerator(navController) },
             image = R.drawable.sample_image,
-            title = "Title 3",
-            subTitle = "Sub title 3"
+            title = "Message Generator",
+            subTitle = "Version 2024.04"
         ),
         FeatureCardModel(
             onClick = {},
