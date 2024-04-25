@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.maronworks.composenotebook.onboarding.OnBoardingActivity
+import com.maronworks.composenotebook.authentication.LoginSignUpActivity
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +19,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    OnBoardingActivity()
+//                    OnBoardingActivity()
+                    LoginSignUpActivity()
                 }
             }
         }
