@@ -39,7 +39,11 @@ private fun Default() {
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            OnBoardingActivity()
+            OnBoardingActivity(
+                onGetStarted = {
+
+                }
+            )
         }
     }
 }
@@ -48,6 +52,7 @@ private fun Default() {
 @Composable
 fun OnBoardingActivity(
     scope: CoroutineScope = rememberCoroutineScope(),
+    onGetStarted: () -> Unit,
 ) {
     val pagerState = rememberPagerState {
         3
@@ -112,6 +117,7 @@ fun OnBoardingActivity(
                             }
                             Log.d("on_boarding", "Current Page: ${pagerState.currentPage}")
                         } else {
+                            onGetStarted()
                             Log.d("on_boarding", "Navigate Login Screen")
                         }
                     }

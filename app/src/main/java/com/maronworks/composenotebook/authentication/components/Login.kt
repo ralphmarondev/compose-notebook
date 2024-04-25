@@ -31,7 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun Login() {
+fun Login(
+    onLogin: () -> Unit,
+) {
     var username by rememberSaveable {
         mutableStateOf("")
     }
@@ -115,7 +117,7 @@ fun Login() {
         }
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onLogin,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(15.dp)

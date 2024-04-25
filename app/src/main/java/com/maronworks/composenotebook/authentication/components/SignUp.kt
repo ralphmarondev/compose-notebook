@@ -28,7 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SignUp() {
+fun SignUp(
+    onSignUp: () -> Unit,
+) {
     var username by rememberSaveable {
         mutableStateOf("")
     }
@@ -121,7 +123,7 @@ fun SignUp() {
         Spacer(modifier = Modifier.height(15.dp))
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onSignUp,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(15.dp)

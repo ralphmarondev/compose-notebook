@@ -38,13 +38,17 @@ private fun Default() {
                 .fillMaxSize(),
             color = MaterialTheme.colorScheme.secondary
         ) {
-            LoginSignUpActivity()
+            LoginSignUpActivity(
+                onLogin = {}
+            )
         }
     }
 }
 
 @Composable
-fun LoginSignUpActivity() {
+fun LoginSignUpActivity(
+    onLogin: () -> Unit,
+) {
     var selectedIndex by rememberSaveable {
         mutableIntStateOf(1)
     }
@@ -95,8 +99,13 @@ fun LoginSignUpActivity() {
                 }
 
                 when (selectedIndex) {
-                    0 -> SignUp()
-                    1 -> Login()
+                    0 -> SignUp(
+                        onSignUp = {
+                            selectedIndex = 1 // Back to login
+                        }
+                    )
+
+                    1 -> Login(onLogin = onLogin)
                 }
             }
         }
