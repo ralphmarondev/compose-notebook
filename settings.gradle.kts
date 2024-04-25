@@ -21,5 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose Notebook"
 include(":app")
-include(":hello")
-include(":guessing_game")
+ 

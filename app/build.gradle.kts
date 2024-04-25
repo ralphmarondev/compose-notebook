@@ -11,8 +11,8 @@ android {
         applicationId = "com.maronworks.composenotebook"
         minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -50,8 +50,6 @@ android {
 }
 
 dependencies {
-    // including the other modules
-//    implementation(project(":guessing_game"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,13 +59,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-    // navigation
     implementation(libs.androidx.navigation.compose)
-
-    // extended-icons
     implementation(libs.androidx.material.icons.extended.android)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
