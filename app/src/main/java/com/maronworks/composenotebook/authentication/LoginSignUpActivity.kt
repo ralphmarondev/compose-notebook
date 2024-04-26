@@ -1,5 +1,6 @@
 package com.maronworks.composenotebook.authentication
 
+import android.content.Context
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
@@ -22,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -47,8 +49,10 @@ private fun Default() {
 
 @Composable
 fun LoginSignUpActivity(
+    context: Context = LocalContext.current,
     onLogin: () -> Unit,
 ) {
+    val viewModel = LoginSignUpViewModel(context)
     var selectedIndex by rememberSaveable {
         mutableIntStateOf(1)
     }
@@ -100,12 +104,16 @@ fun LoginSignUpActivity(
 
                 when (selectedIndex) {
                     0 -> SignUp(
+                        viewModel = viewModel,
                         onSignUp = {
-                            selectedIndex = 1 // Back to login
+                            selectedIndex = 1 // back to login
                         }
                     )
 
-                    1 -> Login(onLogin = onLogin)
+                    1 -> Login(
+                        viewModel = viewModel,
+                        onLogin = onLogin
+                    )
                 }
             }
         }

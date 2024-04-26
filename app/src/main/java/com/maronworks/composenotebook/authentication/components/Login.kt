@@ -1,5 +1,6 @@
 package com.maronworks.composenotebook.authentication.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -29,9 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.maronworks.composenotebook.authentication.LoginSignUpViewModel
 
 @Composable
 fun Login(
+    viewModel: LoginSignUpViewModel,
     onLogin: () -> Unit,
 ) {
     var username by rememberSaveable {
@@ -117,7 +120,17 @@ fun Login(
         }
 
         Button(
-            onClick = onLogin,
+            onClick = {
+                try {
+                    if (viewModel.isUserExists(username, password)) {
+                        onLogin()
+                    } else {
+                        TODO("Show dialog saying password is incorrect")
+                    }
+                } catch (ex: Exception) {
+                    Log.d("db", "Error: ${ex.message}")
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(15.dp)

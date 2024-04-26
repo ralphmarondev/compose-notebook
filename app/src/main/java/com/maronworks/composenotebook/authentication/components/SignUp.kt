@@ -26,9 +26,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.maronworks.composenotebook.authentication.LoginSignUpViewModel
 
 @Composable
 fun SignUp(
+    viewModel: LoginSignUpViewModel,
     onSignUp: () -> Unit,
 ) {
     var username by rememberSaveable {
@@ -123,7 +125,13 @@ fun SignUp(
         Spacer(modifier = Modifier.height(15.dp))
 
         Button(
-            onClick = onSignUp,
+            onClick = {
+                if (viewModel.registerUser(username, password)) {
+                    onSignUp()
+                } else {
+                    TODO("show dialog saying error [user already exists] or invalid input")
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(15.dp)
