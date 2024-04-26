@@ -23,10 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.features.home.components.DrawerContent
 import com.maronworks.composenotebook.home.features.home.components.FeatureAndSearchCard
 import com.maronworks.composenotebook.home.features.home.components.ItemContainer
+import com.maronworks.composenotebook.home.features.home.model.apps.AppModel
+import com.maronworks.composenotebook.home.features.home.model.apps.listOfApps
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -88,10 +89,13 @@ fun Home(
                     modifier = Modifier
                         .padding(horizontal = 5.dp)
                 ) {
-                    items(4) {
+                    items(listOfApps.size) { index ->
                         ItemContainer(
-                            image = R.drawable.compose_img,
-                            label = "Hello World"
+                            AppModel(
+                                image = listOfApps[index].image,
+                                label = listOfApps[index].label,
+                                onClick = listOfApps[index].onClick
+                            )
                         )
                     }
                 }

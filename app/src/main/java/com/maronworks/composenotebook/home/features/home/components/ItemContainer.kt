@@ -1,6 +1,5 @@
 package com.maronworks.composenotebook.home.features.home.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,15 +21,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.maronworks.composenotebook.home.features.home.model.apps.AppModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemContainer(
-    @DrawableRes image: Int,
-    label: String,
+    appModel: AppModel,
 ) {
     ElevatedCard(
-        onClick = {},
+        onClick = { appModel.onClick() },
         modifier = Modifier
             .wrapContentSize()
             .padding(5.dp)
@@ -44,7 +43,7 @@ fun ItemContainer(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = image),
+                painter = painterResource(id = appModel.image),
                 contentDescription = "",
                 modifier = Modifier
                     .size(70.dp)
@@ -52,7 +51,7 @@ fun ItemContainer(
                 contentScale = ContentScale.Crop
             )
             Spacer(modifier = Modifier.height(5.dp))
-            Text(text = label)
+            Text(text = appModel.label)
         }
     }
 }
