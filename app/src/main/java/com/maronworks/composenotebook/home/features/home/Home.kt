@@ -1,9 +1,11 @@
 package com.maronworks.composenotebook.home.features.home
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.MenuOpen
 import androidx.compose.material3.DrawerValue
@@ -18,7 +20,13 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.features.home.components.DrawerContent
+import com.maronworks.composenotebook.home.features.home.components.FeatureAndSearchCard
+import com.maronworks.composenotebook.home.features.home.components.ItemContainer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -60,13 +68,32 @@ fun Home(
                 )
             }
         ) { innerPadding ->
-            LazyColumn(
+            Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
             ) {
-                item {
-                    Text(text = "Home")
+                FeatureAndSearchCard()
+
+                Text(
+                    text = "Popular Apps",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.W500,
+                    modifier = Modifier
+                        .padding(horizontal = 10.dp, vertical = 5.dp)
+                )
+
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    modifier = Modifier
+                        .padding(horizontal = 5.dp)
+                ) {
+                    items(4) {
+                        ItemContainer(
+                            image = R.drawable.compose_img,
+                            label = "Hello World"
+                        )
+                    }
                 }
             }
         }

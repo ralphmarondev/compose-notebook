@@ -63,7 +63,7 @@ fun HomeActivity(
                         onClick = {
                             selectedIndex = index
                             navController.navigate(item.route) {
-                                selectedIndex = 0
+                                //selectedIndex = 0
                                 popUpTo(Screen.Home.route)
                             }
                         },
