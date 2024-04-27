@@ -32,6 +32,7 @@ import com.maronworks.composenotebook.home.features.home.components.FeatureAndSe
 import com.maronworks.composenotebook.home.features.home.components.ItemContainer
 import com.maronworks.composenotebook.home.features.home.model.apps.AppModel
 import com.maronworks.composenotebook.mini_apps.converter.ConverterActivity
+import com.maronworks.composenotebook.mini_apps.keep_notes.KeepNotesActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -110,8 +111,11 @@ fun Home(
                         ),
                         AppModel(
                             image = R.drawable.kotlin_img,
-                            label = "Hello World",
-                            onClick = {}
+                            label = "Keep Notes",
+                            onClick = {
+                                val intent = Intent(context, KeepNotesActivity::class.java)
+                                context.startActivity(intent)
+                            }
                         ),
                         AppModel(
                             image = R.drawable.compose_img,
