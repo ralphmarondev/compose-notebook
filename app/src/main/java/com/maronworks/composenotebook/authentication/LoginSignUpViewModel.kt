@@ -8,10 +8,11 @@ import com.maronworks.composenotebook.core.data.local.db.DBHandler
 
 @SuppressLint("StaticFieldLeak")
 class LoginSignUpViewModel(private val context: Context) : ViewModel() {
+
     /*
      *      Returns [true] if user exists in database else return [false]
      */
-    fun isUserExists(
+    fun onLogin(
         username: String,
         password: String,
     ): Boolean {
@@ -21,25 +22,15 @@ class LoginSignUpViewModel(private val context: Context) : ViewModel() {
             return false
         }
 
-        // checking if user exists in database
+        // if fields are not empty, check if user exists in database
         try {
             val db = DBHandler(context)
 
-            Log.d("db", "Checking if '$username', '$password' exists.")
-            return if (db.isUserExists(username, password)) {
-                Log.d("db", "Username: '$username', Password: '$password' EXISTS in database.")
-                true
-            } else {
-                Log.d(
-                    "db",
-                    "Username: '$username', Password: '$password' DOES NOT EXISTS in database."
-                )
-                false
-            }
+            return db.isUserExists(username, password)
         } catch (ex: Exception) {
-            Log.d("db", "Error [isUserExists()]: ${ex.message}")
-            return false
+            Log.d("db", "Error: ${ex.message}")
         }
+        return false
     }
 
     /*
@@ -55,21 +46,21 @@ class LoginSignUpViewModel(private val context: Context) : ViewModel() {
             return false
         }
 
-        // check if user already exists in database
-        if (isUserExists(username, password)) {
-            Log.d("db", "$username, $password already EXISTS in database")
-            return false
-        }
-
-        // register user in database
-        return try {
+        // if fields are not empty, register user in database
+        try {
             val db = DBHandler(context)
-            db.insertUser(username, password)
-            Log.d("db", "$username, $password registered successfully")
-            true
+
+            if (db.isUserExists(username, password)) {
+                Log.d("db", "$username, $password already EXISTS in database")
+            } else {
+                db.insertUser(username, password)
+                Log.d("db", "$username, $password registered successfully")
+
+                return true
+            }
         } catch (ex: Exception) {
             Log.d("db", "Error [registerUser()]: ${ex.message}")
-            false
         }
+        return false
     }
 }

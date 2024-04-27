@@ -121,14 +121,15 @@ fun Login(
 
         Button(
             onClick = {
-                try {
-                    if (viewModel.isUserExists(username, password)) {
+                if (username.isNotEmpty() && password.isNotEmpty()) {
+                    if (viewModel.onLogin(username, password)) {
                         onLogin()
+                        Log.d("hello", "Logged in successfully.")
                     } else {
-                        TODO("Show dialog saying password is incorrect")
+                        Log.d("hello", "Invalid username and password")
                     }
-                } catch (ex: Exception) {
-                    Log.d("db", "Error: ${ex.message}")
+                } else {
+                    Log.d("hello", "Username or password is empty.")
                 }
             },
             modifier = Modifier

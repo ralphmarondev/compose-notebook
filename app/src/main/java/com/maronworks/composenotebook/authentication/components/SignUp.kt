@@ -1,5 +1,6 @@
 package com.maronworks.composenotebook.authentication.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -126,10 +127,14 @@ fun SignUp(
 
         Button(
             onClick = {
-                if (viewModel.registerUser(username, password)) {
-                    onSignUp()
+                if (username.isNotEmpty() && password.isNotEmpty() && (password == password2)) {
+                    if (viewModel.registerUser(username, password)) {
+                        onSignUp()
+                    } else {
+                        Log.d("db", "Failed to register user.")
+                    }
                 } else {
-                    TODO("show dialog saying error [user already exists] or invalid input")
+                    Log.d("db", "Username or password is empty")
                 }
             },
             modifier = Modifier
