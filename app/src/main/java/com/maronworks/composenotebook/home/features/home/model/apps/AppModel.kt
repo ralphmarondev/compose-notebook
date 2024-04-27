@@ -8,27 +8,3 @@ data class AppModel(
     val label: String,
     val onClick: () -> Unit,
 )
-
-val listOfApps = listOf(
-    AppModel(
-        image = R.drawable.compose_img,
-        label = "Compose Basics",
-        onClick = {}
-    ),
-    AppModel(
-        image = R.drawable.kotlin_img,
-        label = "Hello World",
-        onClick = {}
-    ),
-    AppModel(
-        image = R.drawable.kotlin_img,
-        label = "Hello World",
-        onClick = {}
-    ),
-    AppModel(
-        image = R.drawable.compose_img,
-        label = "Hello World",
-        onClick = {}
-    ),
-
-)

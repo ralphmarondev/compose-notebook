@@ -1,6 +1,8 @@
 package com.maronworks.composenotebook.home.features.home
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -20,14 +22,16 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.maronworks.composenotebook.R
 import com.maronworks.composenotebook.home.features.home.components.DrawerContent
 import com.maronworks.composenotebook.home.features.home.components.FeatureAndSearchCard
 import com.maronworks.composenotebook.home.features.home.components.ItemContainer
 import com.maronworks.composenotebook.home.features.home.model.apps.AppModel
-import com.maronworks.composenotebook.home.features.home.model.apps.listOfApps
+import com.maronworks.composenotebook.mini_apps.converter.ConverterActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -36,6 +40,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun Home(
     scope: CoroutineScope = rememberCoroutineScope(),
+    context: Context = LocalContext.current,
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 
@@ -89,6 +94,32 @@ fun Home(
                     modifier = Modifier
                         .padding(horizontal = 5.dp)
                 ) {
+                    val listOfApps = listOf(
+                        AppModel(
+                            image = R.drawable.compose_img,
+                            label = "Compose Basics",
+                            onClick = {}
+                        ),
+                        AppModel(
+                            image = R.drawable.kotlin_img,
+                            label = "Converter",
+                            onClick = {
+                                val intent = Intent(context, ConverterActivity::class.java)
+                                context.startActivity(intent)
+                            }
+                        ),
+                        AppModel(
+                            image = R.drawable.kotlin_img,
+                            label = "Hello World",
+                            onClick = {}
+                        ),
+                        AppModel(
+                            image = R.drawable.compose_img,
+                            label = "Hello World",
+                            onClick = {}
+                        ),
+                    )
+
                     items(listOfApps.size) { index ->
                         ItemContainer(
                             AppModel(
