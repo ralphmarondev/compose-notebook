@@ -6,6 +6,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.authentication.LoginSignUpActivity
 import com.maronworks.composenotebook.core.data.local.preferences.SharedPreferenceManager
 import com.maronworks.composenotebook.home.HomeActivity
@@ -14,7 +15,7 @@ import com.maronworks.composenotebook.onboarding.OnBoardingActivity
 @Composable
 fun AppNavigation(
     context: Context = LocalContext.current,
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
 ) {
     val sharedPreference = SharedPreferenceManager(context)
     val startDestination =
