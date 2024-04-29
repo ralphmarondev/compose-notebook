@@ -32,14 +32,14 @@ fun SplashScreen(
             targetValue = 0.7f,
             // tween Animation
             animationSpec = tween(
-                durationMillis = 2000,
+                durationMillis = 3000,
                 easing = {
                     OvershootInterpolator(4f).getInterpolation(it)
                 }
             )
         )
         // delay time
-        delay(2000L)
+        delay(1500L)
         afterSplash()
     }
 

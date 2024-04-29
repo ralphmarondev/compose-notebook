@@ -12,14 +12,21 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.dp
 import com.maronworks.composenotebook.R
+import com.maronworks.composenotebook.mini_apps.instagram.home.components.BottomSheetContent
 import com.maronworks.composenotebook.mini_apps.instagram.home.components.ImageCard
 import com.maronworks.composenotebook.mini_apps.instagram.home.domain.post.PostModel
 
@@ -29,6 +36,8 @@ import com.maronworks.composenotebook.mini_apps.instagram.home.domain.post.PostM
 fun HomeActivity(
     onExitApp: () -> Unit,
 ) {
+    var showBottomSheet by remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -88,9 +97,23 @@ fun HomeActivity(
                     datePosted = "April 29, 2024"
                 )
                 ImageCard(
-                    onMoreClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .padding(10.dp),
+                    onMoreClick = {
+                        showBottomSheet = !showBottomSheet
+                    },
                     post = samplePost
                 )
+            }
+        }
+
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    showBottomSheet = false
+                }
+            ) {
+                BottomSheetContent()
             }
         }
     }

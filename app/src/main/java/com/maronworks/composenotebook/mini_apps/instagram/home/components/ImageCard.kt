@@ -49,7 +49,7 @@ import com.maronworks.composenotebook.mini_apps.instagram.ui.theme.InstagramThem
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ImageCard(
-    modifier: Modifier = Modifier.padding(10.dp),
+    modifier: Modifier = Modifier,
     onMoreClick: () -> Unit,
     post: PostModel,
 ) {
