@@ -1,5 +1,7 @@
 package com.maronworks.composenotebook
 
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(
                         navController = navController,
-                        startDestination = "splash"
+                        startDestination = if (VERSION.SDK_INT < VERSION_CODES.S) "splash" else "main"
                     ) {
                         composable("splash") {
                             SplashScreen(

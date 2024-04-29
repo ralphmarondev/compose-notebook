@@ -32,6 +32,7 @@ import com.maronworks.composenotebook.home.features.home.components.FeatureAndSe
 import com.maronworks.composenotebook.home.features.home.components.ItemContainer
 import com.maronworks.composenotebook.home.features.home.model.apps.AppModel
 import com.maronworks.composenotebook.mini_apps.converter.ConverterActivity
+import com.maronworks.composenotebook.mini_apps.instagram.InstagramActivity
 import com.maronworks.composenotebook.mini_apps.keep_notes.KeepNotesActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -119,8 +120,11 @@ fun Home(
                         ),
                         AppModel(
                             image = R.drawable.compose_img,
-                            label = "Hello World",
-                            onClick = {}
+                            label = "Instagram Mini",
+                            onClick = {
+                                val intent = Intent(context, InstagramActivity::class.java)
+                                context.startActivity(intent)
+                            }
                         ),
                     )
 
