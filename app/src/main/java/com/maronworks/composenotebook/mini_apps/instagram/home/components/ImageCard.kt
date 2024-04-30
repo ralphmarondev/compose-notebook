@@ -1,5 +1,7 @@
 package com.maronworks.composenotebook.mini_apps.instagram.home.components
 
+import android.content.Context
+import android.media.MediaPlayer
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,6 +48,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,6 +62,7 @@ import com.maronworks.composenotebook.mini_apps.instagram.ui.theme.InstagramThem
 @Composable
 fun ImageCard(
     modifier: Modifier = Modifier,
+    context: Context = LocalContext.current,
     onMoreClick: () -> Unit,
     post: PostModel,
 ) {
@@ -67,6 +71,16 @@ fun ImageCard(
     }
     var isMusicPlaying by rememberSaveable {
         mutableStateOf(false)
+    }
+
+    // music to play
+    val mediaPlayer = MediaPlayer.create(context, R.raw.audio_im_doing_fine)
+
+    if (isMusicPlaying) {
+        mediaPlayer.start()
+    } else {
+        mediaPlayer.stop()
+//        mediaPlayer.pause()
     }
 
     ElevatedCard(

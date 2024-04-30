@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/notes" />
             <option value="$PROJECT_DIR$/notes/lottie" />
+            <option value="$PROJECT_DIR$/notes/playmusic" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
