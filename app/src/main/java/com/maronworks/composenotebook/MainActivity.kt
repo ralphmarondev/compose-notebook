@@ -28,9 +28,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val intent = Intent(this, LottieActivity::class.java)
-                    startActivity(intent)
-
                     val navController = rememberNavController()
 
                     NavHost(

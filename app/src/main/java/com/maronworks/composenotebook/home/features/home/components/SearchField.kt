@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun SearchField(
@@ -30,13 +31,14 @@ fun SearchField(
         },
         placeholder = {
             Text(
-                text = "Search",
+                text = "Search...",
                 color = textColor
             )
         },
         textStyle = TextStyle(
             fontFamily = FontFamily.Monospace,
-            color = textColor
+            color = textColor,
+            fontSize = 16.sp
         ),
         trailingIcon = {
             Icon(
