@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose Notebook"
 include(":app")
- 
+include(":notes:lottie")
