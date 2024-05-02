@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,6 +31,7 @@ private fun Default() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .padding(top = 10.dp)
             ) {
                 FeatureAndSearchCard()
             }
@@ -56,8 +58,9 @@ fun FeatureAndSearchCard() {
 
         SearchField(
             modifier = Modifier
-                .height(60.dp)
-                .padding(5.dp)
+                .wrapContentHeight()
+                .fillMaxWidth()
+                .padding(horizontal = 45.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(MaterialTheme.colorScheme.tertiary)
                 .align(Alignment.BottomCenter),

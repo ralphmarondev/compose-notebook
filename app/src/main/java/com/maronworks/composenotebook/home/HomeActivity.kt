@@ -25,6 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.maronworks.composenotebook.home.features.home.Home
+import com.maronworks.composenotebook.home.features.profile.Profile
 import com.maronworks.composenotebook.home.model.navigation.listOfNavItems
 import com.maronworks.composenotebook.home.model.screen.Screen
 import com.maronworks.composenotebook.ui.theme.ComposeNotebookTheme
@@ -103,9 +104,10 @@ fun HomeActivity(
                 }
             }
             composable(Screen.Profile.route) {
-                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                    Text(text = "Profile")
-                }
+                Profile(
+                    fullName = "Ralph Maron Eda",
+                    username = "@ralphmaron"
+                )
             }
         }
     }
