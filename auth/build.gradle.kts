@@ -1,20 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.maronworks.composenotebook"
+    namespace = "com.maronworks.auth"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.maronworks.composenotebook"
         minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "2024.05"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -51,11 +48,9 @@ android {
 
 dependencies {
 
-    // my libraries
-    implementation(project(":auth"))
-
-
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

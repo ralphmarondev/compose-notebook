@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Compose NoteBook"
 include(":app")
+include(":auth")
