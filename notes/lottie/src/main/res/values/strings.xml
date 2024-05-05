@@ -1,6 +1,0 @@
-<resources>
-    <string name="title_activity_lottie">LottieActivity</string>
-    <string name="about_app">
-        In this application we implemented Lottie Animation using Jetpack Compose.
-    </string>
-</resources>

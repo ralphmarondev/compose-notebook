@@ -1,4 +1,4 @@
-# compose-notebook
+# compose-notebook [v2024.05]
 
 Application that implements different jetpack components such as but not limited to,
 - text
@@ -24,9 +24,9 @@ Application that implements different jetpack components such as but not limited
 - snack-bar
 - toast
 
-# what's new
-- Nothing new, still you. Lolz
-- Just refreshing my Jetpack Compose knowledge
+# what's new [2024-05-05]
+- Changed Version Name
+- Start from scratch [main branch is crashing]
 
 # coming soon
 - online database support

@@ -19,7 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Compose Notebook"
+rootProject.name = "Compose NoteBook"
 include(":app")
-include(":notes:lottie")
-include(":notes:playmusic")
